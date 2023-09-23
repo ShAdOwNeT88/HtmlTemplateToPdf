@@ -14,8 +14,7 @@ import java.nio.file.Path
 import java.util.*
 import kotlin.io.path.absolutePathString
 
-const val TEMPLATE_PATH =
-    "C:\\Users\\AntonioLavoro\\Documents\\IdeaProjects\\uniwhere-w-backtwo2\\backtwo2-backend\\src\\main\\resources\\templates"
+const val TEMPLATE_PATH = "src/main/resources/templates"
 
 class HtmlToPdfUtils {
 
