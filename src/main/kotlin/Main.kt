@@ -1,5 +1,6 @@
 import domain.Experience
 import domain.User
+import utils.HtmlToPdfUtils
 import kotlin.io.path.createTempDirectory
 
 fun main() {
@@ -16,7 +17,7 @@ fun main() {
         Experience(title = "Experience2", description = "Description for experience 2")
     )
 
-    val document = PdfUtils().createPdf(
+    val document = HtmlToPdfUtils().createPdf(
         user = user,
         experiences = userExperiences,
         tempDirectory = createTempDirectory("pdf_output")
