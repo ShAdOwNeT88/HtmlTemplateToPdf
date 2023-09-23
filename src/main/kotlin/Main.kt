@@ -1,34 +1,27 @@
-import freemarker.template.Template
-import java.io.File
-import java.io.FileWriter
-import java.io.OutputStreamWriter
-import java.io.Writer
+import domain.Experience
+import domain.User
+import kotlin.io.path.createTempDirectory
 
 fun main() {
-    val config = HtmlToPdf().createTemplateConfig()
-    val inputData = HtmlToPdf().prepareUserDataForTemplateFilling()
-    val outerHtml =
-        File("C:\\Users\\AntonioLavoro\\Documents\\IdeaProjects\\html_template_to_pdf\\src\\main\\resources\\output\\output.html")
-    val outerPdf =
-        File("C:\\Users\\AntonioLavoro\\Documents\\IdeaProjects\\html_template_to_pdf\\src\\main\\resources\\output\\output.pdf")
+    val user = User(
+        name = "Antonio Francesco",
+        surname = "Iovine",
+        phone = "+393293640567",
+        email = "test@gmail.com"
+    )
 
-    // 2.2. Get the template
-    //val template: Template = config.getTemplate("/firstTemplate.ftl")
-    val template: Template = config.getTemplate("/userBaseTemplate.ftl")
+    val userExperiences = listOf(
+        Experience(title = "Experience", description = "Description for experience"),
+        Experience(title = "Experience1", description = "Description for experience 1"),
+        Experience(title = "Experience2", description = "Description for experience 2")
+    )
 
-    // 2.3. Generate the output
-    // Write output to the console
-    val consoleWriter: Writer = OutputStreamWriter(System.out)
-    template.process(inputData, consoleWriter)
+    val document = PdfUtils().createPdf(
+        user = user,
+        experiences = userExperiences,
+        tempDirectory = createTempDirectory("pdf_output")
+    )
 
-    // Write output to the file
-    val outputWriter: Writer = FileWriter(outerHtml)
-    outputWriter.use { fileWriter ->
-        template.process(inputData, fileWriter)
-    }
-    outputWriter.close()
-
-    val document = HtmlToPdf().createJsoupDocument(outerHtml)
-    HtmlToPdf().createPdf(document = document, output = outerPdf)
+    System.out.println("Returned file $document")
 }
 
