@@ -1,3 +1,5 @@
+package utils
+
 import domain.Experience
 import domain.User
 import freemarker.template.Configuration
@@ -15,7 +17,7 @@ import kotlin.io.path.absolutePathString
 const val TEMPLATE_PATH =
     "C:\\Users\\AntonioLavoro\\Documents\\IdeaProjects\\uniwhere-w-backtwo2\\backtwo2-backend\\src\\main\\resources\\templates"
 
-class PdfUtils {
+class HtmlToPdfUtils {
 
     fun createPdf(user: User, experiences: List<Experience>, tempDirectory: Path): File {
         val config = createTemplateConfig()
