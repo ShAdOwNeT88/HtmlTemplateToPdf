@@ -21,7 +21,5 @@ fun main() {
         experiences = userExperiences,
         tempDirectory = createTempDirectory("pdf_output")
     )
-
-    System.out.println("Returned file $document")
 }
 
